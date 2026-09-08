@@ -20,7 +20,7 @@ WHERE datname = 'datawarehouseanalytics'
 DROP DATABASE IF EXISTS datawarehouse_analytics;
 
 CREATE DATABASE datawarehouse_analytics;
-
+GO
 
 -- NOTE: After running the above block, reconnect DBeaver to the new 'DataWarehouseAnalytics' in the top thingy, then run the rest below:
 
@@ -37,7 +37,7 @@ CREATE TABLE gold.dim_customers(
     country varchar(50),
     marital_status varchar(50),
     gender varchar(50),
-    birthdate date,
+    birthdte date,
     create_date date
 );
 
@@ -73,11 +73,11 @@ CREATE TABLE gold.fact_sales(
 -- (Make sure to update the file paths to absolute paths)
 
 -- We're making full loads 
--- With the thr trucate and copy from the cvs files to be seen in the github repo 
+-- With the thr truncate and copy from the cvs files to be seen in the github repo 
 TRUNCATE TABLE gold.dim_customers;
 
 COPY gold.dim_customers
-FROM '/Users/macairm1/Desktop/*DATA_ENG_PROJECTS/ongoing/sql-data-analytics-project/datasets/flat-files/dim_customers.csv'
+FROM 'PATH/dim_customers.csv'
 WITH (
 FORMAT csv,
 HEADER true,
@@ -86,7 +86,7 @@ DELIMITER ',');
 TRUNCATE TABLE gold.dim_products;
 
 COPY gold.dim_products
-FROM '/Users/macairm1/Desktop/*DATA_ENG_PROJECTS/ongoing/sql-data-analytics-project/datasets/flat-files/dim_products.csv'
+FROM 'PATH/dim_products.csv'
 WITH (FORMAT csv, 
 HEADER true ,
 DELIMITER ',');
@@ -94,7 +94,7 @@ DELIMITER ',');
 TRUNCATE TABLE gold.fact_sales;
 
 COPY gold.fact_sales
-FROM '/Users/macairm1/Desktop/*DATA_ENG_PROJECTS/ongoing/sql-data-analytics-project/datasets/flat-files/fact_sales.csv'
+FROM 'PATH/fact_sales.csv'
 WITH (FORMAT csv,
 HEADER true,
 DELIMITER ',');
