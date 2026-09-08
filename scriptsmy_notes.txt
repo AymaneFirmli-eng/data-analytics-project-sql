@@ -1,0 +1,14 @@
+* We need to see wether our dataset is classified as a DIMENSION (HELP US GROUP DATA BY SMTG is other words this is almost the case a X-AXIS) or a MEASURE (SHOWS US THE PARAETER THE DIFFERENT CATEGORIES ARE DIFFERENT IN in other words its the Y-AXIS) 
+* There is a simple decision tree in order to make sure we have the right choice of the table columns type
+
+
+                IS it numerical values? NO  => Dimension 
+                                        YES => Does it ake sense to agregate it (use agregate functions SUM, AVG...)? YES => MEASURE 
+                                                                                                                NO => DIMENSION
+
+===>>> some examples : Measure: sales, quantity, duration of delivery
+                Dimensions: Name, ID,  Country..
+
+However some dimensions might turn into measures:
+    SELECT birthdate AS dimension_birthdate                   => We can't do agregations here
+    SELECT EXTRACT(YEAR FROM AGE(birthdate)) AS measure_age   => We can do agregations here like avg, max....
