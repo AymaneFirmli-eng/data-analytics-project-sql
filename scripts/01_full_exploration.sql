@@ -66,7 +66,7 @@ SELECT
     EXTRACT(YEAR FROM AGE(MAX(birthdate))) AS youngest_age
 FROM gold.dim_customers;
 
--- Individual Key Metric Calculations
+-- Individual Key Metric Calculations for averages and sums
 SELECT SUM(sales_amount) AS total_sales FROM gold.fact_sales;
 SELECT SUM(quantity) AS total_quantity FROM gold.fact_sales;
 SELECT AVG(price) AS avg_price FROM gold.fact_sales;
